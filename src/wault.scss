@@ -1,0 +1,155 @@
+﻿@import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.flex {
+    flex-grow: 1;
+}
+
+#wault_frame {
+    color: rgba(0, 0, 0, .87);
+    background-color: rgba(0, 0, 0, .54);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
+    border: none;
+    isolation: isolate;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.waultControl {
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    display: inline-block;
+
+    .waultControl__content {
+        border: 1px solid #666;
+        border-radius: 2px;
+        padding: 4px;
+        display: flex;
+        flex-direction: row;
+
+        .waultControl__claimInput {
+            padding: 4px;
+            border: none;
+
+            &:focus {
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+    .waultControl__dropdown {
+        position: absolute;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, .12);
+
+        .waultControl__dropdownContent {
+            ul {
+                padding: 0;
+                margin: 0;
+                list-style-type: none;
+
+                li {
+                    margin: 0;
+                    padding: 8px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, .06);
+                    }
+                }
+            }
+
+            .waultControl__dropdownContent__loadingPlaceholder {
+                padding: 8px;
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                color: rgba(0, 0, 0, .54);
+
+                .material-icons {
+                    margin-right: 12px;
+                    animation: rotate 2s linear infinite;
+                    color: #00b1f9;
+                }
+            }
+        }
+
+        .waultControl__dropdownActions {
+            align-items: center;
+            color: rgba(0, 0, 0, .54);
+            border-color: rgba(0, 0, 0, .12);
+            border-style: solid;
+            border-width: 1px 0 0 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 8px;
+
+            a {
+                cursor: pointer;
+            }
+
+            .waultControl__dropdownActions__iconButton {
+                cursor: pointer;
+                color: rgba(0, 0, 0, .54);
+
+                &:hover {
+                    color: #00b1f9;
+                }
+            }
+        }
+    }
+
+    .hasTooltip {
+        position: relative;
+
+        .tooltip {
+            visibility: hidden;
+            background-color: rgba(0, 0, 0, .87);
+            color: rgba(255, 255, 255, .87);
+            border-radius: 6px;
+            padding: 6px;
+            position: absolute;
+            z-index: 1;
+            top: -22px;
+            left: 2px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10px;
+        }
+
+        &:hover {
+            .tooltip {
+                visibility: visible;
+            }
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn ease .4s;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}

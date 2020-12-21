@@ -1,0 +1,40 @@
+{
+  "name": "wault.js",
+  "version": "0.1.0",
+  "description": "Javascript SDK for Wault platform",
+  "main": "index.ts",
+  "author": {
+    "name": "Wymsical INC."
+  },
+  "contributors": [
+    {
+      "name": "Zhao Yu",
+      "email": "zhaoyu@techwuli.com"
+    }
+  ],
+  "scripts": {
+    "start": "gulp default",
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "@types/browserify": "^12.0.36",
+    "@types/gulp": "^4.0.7",
+    "browserify": "^17.0.0",
+    "del": "^6.0.0",
+    "eslint": "^7.11.0",
+    "gulp": "^4.0.2",
+    "gulp-connect": "^5.7.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.14.1",
+    "tsify": "^5.0.2",
+    "typescript": "^4.0.3",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
+    "knockout": "^3.5.1"
+  }
+}
