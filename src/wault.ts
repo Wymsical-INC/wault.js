@@ -16,18 +16,15 @@ export class Wault {
         this._waultId = waultId;
     }
 
-    loadEntries(path: string = '/', pageIndex: number = 0, pageSize: number = 20, sharable: boolean = true, searchKey: string = ''): Promise<any> {
-        return this.checkSignInStatus()
-            .then(() => {
-                var url = new URL(`${this._waultApiUrl}/api/entries/V2`);
-                url.searchParams.append('path', path);
-                url.searchParams.append('pageIndex', pageIndex.toString());
-                url.searchParams.append('pageSize', pageSize.toString());
-                url.searchParams.append('searchKey', searchKey);
-                url.searchParams.append('sharable', sharable ? 'true' : 'false');
-
-                return this.loadFromApi(url.href);
-            });
+    async loadEntries(path: string = '/', pageIndex: number = 0, pageSize: number = 20, sharable: boolean = true, searchKey: string = ''): Promise<any> {
+        await this.checkSignInStatus();
+        var url = new URL(`${this._waultApiUrl}/api/entries/V2`);
+        url.searchParams.append('path', path);
+        url.searchParams.append('pageIndex', pageIndex.toString());
+        url.searchParams.append('pageSize', pageSize.toString());
+        url.searchParams.append('searchKey', searchKey);
+        url.searchParams.append('sharable', sharable ? 'true' : 'false');
+        return await this.loadFromApi(url.href);
     }
 
     loadClaim(accessToken: string): Promise<any> {
@@ -42,10 +39,16 @@ export class Wault {
         return url.href;
     }
 
-    async requestAccessTokens(claimTypes: string[], documentIds: string[], email: string, signature: boolean = true): Promise<any> {
+    async requestAccessTokens(claimTypes: string[], documentIds: string[], signature: boolean = true, email: string = null, organizationId: string = null): Promise<any> {
         await this.checkSignInStatus();
         var url = `${this._waultApiUrl}/api/v2/entries/accessRequests`;
-        return this.postToApi(url, { claimTypes: claimTypes, documentIds: documentIds, email: email, signature: signature });
+        return this.postToApi(url, {
+            claimTypes: claimTypes,
+            documentIds: documentIds,
+            email: email,
+            signature: signature,
+            organizationId: organizationId
+        });
     }
 
     async loadDocumentClaims(documentId: string): Promise<any> {
