@@ -38,7 +38,7 @@ export class Wault {
 
     getDocumentUrl(accessToken: string){
         var url = new URL(`${this._waultPortalUrl}/documents/view`);
-        url.searchParams.append('accessToken', accessToken);
+        url.searchParams.append('token', accessToken);
         return url.href;
     }
 
