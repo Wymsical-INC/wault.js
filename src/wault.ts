@@ -51,6 +51,21 @@ export class Wault {
         });
     }
 
+    async shareEntry(id: string, shareTo: string, allowDownload: boolean = true): Promise<any> {
+        await this.checkSignInStatus();
+        var url = `${this._waultApiUrl}/api/v2/entries/share`;
+        var postData = {
+            shareTo: shareTo,
+            id: id,
+            permissions: []
+        };
+
+        if (allowDownload) {
+            postData.permissions.push({ type: 'Download' });
+        }
+        return this.postToApi(url, postData);
+    }
+
     async loadDocumentClaims(documentId: string): Promise<any> {
         await this.checkSignInStatus();
         var url = `${this._waultApiUrl}/api/documents/${documentId}/claims`;
