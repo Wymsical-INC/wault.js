@@ -1,16 +1,19 @@
 export class Wault {
     private readonly _waultAuthorityUrl: string;
     private readonly _waultApiUrl: string;
+    private readonly _waultPortalUrl: string;
     private readonly _clientId: string;
     private readonly _userEmail: string;
     private readonly _waultId: string;
+
     private _loginFrame: HTMLElement;
 
     private SESSION_STORAGE_KEY = 'wault.user';
 
-    constructor(waultAuthorityUrl: string, waultApiUrl: string, clientId: string, userEmail: string, waultId: string) {
+    constructor(clientId: string, userEmail: string, waultId: string, waultAuthorityUrl: string, waultApiUrl: string, waultPortalUrl: string) {
         this._waultAuthorityUrl = waultAuthorityUrl.endsWith('/') ? waultAuthorityUrl.substr(0, waultAuthorityUrl.length - 1) : waultAuthorityUrl;
         this._waultApiUrl = waultApiUrl.endsWith('/') ? waultApiUrl.substr(0, waultApiUrl.length - 1) : waultApiUrl;
+        this._waultPortalUrl = waultPortalUrl.endsWith('/') ? waultPortalUrl.substr(0, waultPortalUrl.length - 1) : waultPortalUrl;
         this._clientId = clientId;
         this._userEmail = userEmail;
         this._waultId = waultId;
@@ -31,6 +34,12 @@ export class Wault {
         var url = new URL(`${this._waultApiUrl}/api/v2/entries/claim`);
         url.searchParams.append('accessToken', accessToken);
         return this.loadFromApi(url.href);
+    }
+
+    getDocumentUrl(accessToken: string){
+        var url = new URL(`${this._waultPortalUrl}/documents/view`);
+        url.searchParams.append('accessToken', accessToken);
+        return url.href;
     }
 
     getFileUrl(accessToken: string) {
